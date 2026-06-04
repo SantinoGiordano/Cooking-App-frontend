@@ -22,13 +22,28 @@ export default function Recipes() {
       <div>
         {recipes.map((recipe, index) => (
           <div key={index}>
-            Difficulty: {recipe.difficulty} <br />
+            <div className="flex items-center gap-1">
+              <span>Difficulty:</span>
+              <div className="flex">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span
+                    key={i}
+                    className={
+                      i < recipe.difficulty
+                        ? "text-yellow-400"
+                        : "text-gray-300"
+                    }
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+            </div>
             <h2>{recipe.name}</h2>
             <p className="text-sm text-gray-500">
               Instructions: {recipe.instructions}
             </p>
             Prep Time: {recipe.prepTime} minutes <br />
-
             <p className="text-sm text-gray-500">
               Ingredients: {recipe.ingredients.join(", ")} <br />
             </p>
