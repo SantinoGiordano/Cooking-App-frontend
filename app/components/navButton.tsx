@@ -21,7 +21,7 @@ export default function Page() {
         </button>
 
         {/* FAB Links */}
-        <Link href={"/home"} className="btn btn-lg btn-circle">
+        <Link href={"/"} className="btn btn-lg btn-circle">
           <House size={22} />
         </Link>
 
