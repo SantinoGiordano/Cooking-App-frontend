@@ -111,7 +111,6 @@ export default function Recipes() {
           </div>
         )}
       </div>
-      <NavButton />
     </div>
   );
 }
