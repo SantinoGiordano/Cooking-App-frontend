@@ -1,5 +1,6 @@
 "use client";
 
+import NavButton from "@/app/components/navButton";
 import { Recipe } from "@/app/types/types";
 import { useEffect, useState } from "react";
 
@@ -110,6 +111,7 @@ export default function Recipes() {
           </div>
         )}
       </div>
+      <NavButton />
     </div>
   );
 }
