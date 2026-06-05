@@ -1,22 +1,18 @@
 "use client";
 
 interface RecipeFiltersProps {
-  query: string;
   cuisine: string;
   difficulty: string;
   time: string;
-  onQueryChange: (value: string) => void;
   onCuisineChange: (value: string) => void;
   onDifficultyChange: (value: string) => void;
   onTimeChange: (value: string) => void;
 }
 
 export default function RecipeFilters({
-  query,
   cuisine,
   difficulty,
   time,
-  onQueryChange,
   onCuisineChange,
   onDifficultyChange,
   onTimeChange,
@@ -25,15 +21,7 @@ export default function RecipeFilters({
     <div className="bg-white p-4 rounded-lg shadow-md border mb-6">
       <h2 className="font-bold text-lg mb-4">Filters</h2>
 
-      <div className="grid md:grid-cols-4 gap-4">
-        {/* Search */}
-        <input
-          type="text"
-          placeholder="Search recipes..."
-          value={query}
-          onChange={(e) => onQueryChange(e.target.value)}
-          className="input input-bordered w-full"
-        />
+      <div className="grid md:grid-cols-3 gap-4">
 
         {/* Cuisine */}
         <select
