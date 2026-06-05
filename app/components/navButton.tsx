@@ -28,7 +28,7 @@ export default function Page() {
         <Search size={22} />
       </Link>
 
-      <Link href={"/myIngredients"} className="btn btn-lg btn-circle">
+      <Link href={"/recipes"} className="btn btn-lg btn-circle">
         <Utensils size={22} />
       </Link>
 
