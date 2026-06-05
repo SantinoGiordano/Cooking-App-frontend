@@ -46,7 +46,21 @@ export default function SearchPage() {
           className="input input-bordered w-full text-lg"
         />
 
-        {loading && <p className="mt-4">Searching...</p>}
+        {!loading &&
+          (recipes.length === 0 ? (
+            query ? (
+              <div className="mt-16 text-center">
+                <p className="text-gray-500 text-lg">No recipes found.</p>
+              </div>
+            ) : (
+              <div className="mt-16 text-center">
+                <div className="text-6xl mb-4">🍽️</div>
+                <p className="text-gray-500 text-lg">
+                  Start typing to search recipes
+                </p>
+              </div>
+            )
+          ) : null)}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {recipes.map((recipe, index) => (
