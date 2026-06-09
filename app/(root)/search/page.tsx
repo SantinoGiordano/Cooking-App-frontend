@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Recipe } from "@/app/types/types";
+import { Recipe } from "@/lib/types/types";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");

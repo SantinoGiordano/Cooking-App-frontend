@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Recipe } from "@/app/types/types";
+import { Recipe } from "@/lib/types/types";
 import RecipeFilters from "@/app/components/recipeFilter";
 
 export default function Recipes() {
