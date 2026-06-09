@@ -32,7 +32,7 @@ export default function Page() {
         <Utensils size={22} />
       </Link>
 
-      <Link href="/add-recipe" className="btn btn-lg btn-circle btn-primary">
+      <Link href="/addRecipes" className="btn btn-lg btn-circle btn-primary">
         <Plus size={22} />
       </Link>
     </div>
