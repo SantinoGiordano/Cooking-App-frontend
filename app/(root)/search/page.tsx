@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Recipe } from "@/lib/types/types";
+import { backend_route } from "@/lib/routes/page";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
@@ -20,7 +21,7 @@ export default function SearchPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/recipes/search?q=${searchTerm}`,
+        `${backend_route}/api/recipes/search?q=${searchTerm}`,
       );
 
       const data = await response.json();
