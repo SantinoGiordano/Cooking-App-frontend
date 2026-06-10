@@ -1,5 +1,6 @@
 "use client";
 
+import { backend_route } from "@/lib/routes/page";
 import { useState } from "react";
 
 export default function AddRecipePage() {
@@ -45,7 +46,7 @@ export default function AddRecipePage() {
     };
 
     try {
-      const res = await fetch("http://localhost:8080/api/recipes", {
+      const res = await fetch(`${backend_route}/api/recipes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
