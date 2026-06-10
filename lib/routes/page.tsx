@@ -1,1 +1,1 @@
-export const  route = "https://cooking-app-backend-qv05.onrender.com"
+export const  backend_route = "https://cooking-app-backend-qv05.onrender.com"
