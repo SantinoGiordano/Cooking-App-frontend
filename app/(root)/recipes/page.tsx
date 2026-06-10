@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Recipe } from "@/lib/types/types";
 import RecipeFilters from "@/app/components/recipeFilter";
+import { backend_route } from "@/lib/routes/page";
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -12,7 +13,8 @@ export default function Recipes() {
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/recipes")
+    // "/api/recipes"
+    fetch(`${backend_route}/api/recipes`)
       .then((response) => response.json())
       .then((data) => {
         setRecipes(data.data);
