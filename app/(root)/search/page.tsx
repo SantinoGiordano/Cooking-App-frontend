@@ -18,7 +18,10 @@ export default function SearchPage() {
     setExpandedRecipe(expandedRecipe === index ? null : index);
   };
 
-  const searchRecipes = async (searchTerm: string, type: "name" | "ingredient") => {
+  const searchRecipes = async (
+    searchTerm: string,
+    type: "name" | "ingredient",
+  ) => {
     if (!searchTerm.trim()) {
       setRecipes([]);
       setExpandedRecipe(null);
@@ -28,9 +31,10 @@ export default function SearchPage() {
     setLoading(true);
 
     try {
-      const endpoint = type === "name" 
-        ? `${backend_route}/api/recipes/search?q=${encodeURIComponent(searchTerm)}`
-        : `${backend_route}/api/recipes/search/ingredient?ingredient=${encodeURIComponent(searchTerm)}`;
+      const endpoint =
+        type === "name"
+          ? `${backend_route}/api/recipes/search?q=${encodeURIComponent(searchTerm)}`
+          : `${backend_route}/api/recipes/search/ingredient?ingredient=${encodeURIComponent(searchTerm)}`;
 
       const response = await fetch(endpoint);
       const data = await response.json();
@@ -47,7 +51,7 @@ export default function SearchPage() {
   // Debounced search for recipe name
   useEffect(() => {
     if (searchType !== "name") return;
-    
+
     const timeout = setTimeout(() => {
       setQuery(inputValue);
       if (inputValue.trim()) {
@@ -64,7 +68,7 @@ export default function SearchPage() {
   // Debounced search for ingredient
   useEffect(() => {
     if (searchType !== "ingredient") return;
-    
+
     const timeout = setTimeout(() => {
       setSelectedIngredient(ingredientInput);
       if (ingredientInput.trim()) {
@@ -98,9 +102,9 @@ export default function SearchPage() {
   };
 
   const getSearchPlaceholder = () => {
-    return searchType === "name" 
-      ? "Search recipes by name..." 
-      : "Search recipes by ingredient (e.g., tomato, chicken, cheese)...";
+    return searchType === "name"
+      ? "Search recipes by name..."
+      : "Search recipes by ingredient...";
   };
 
   const getSearchValue = () => {
@@ -152,20 +156,15 @@ export default function SearchPage() {
           className="input input-bordered w-full text-base sm:text-lg"
         />
 
-        {/* Ingredient Search Hint */}
-        {searchType === "ingredient" && (
-          <div className="mt-2 text-sm text-gray-500">
-            💡 Try searching for: tomato, chicken, garlic, cheese, etc.
-          </div>
-        )}
-
-        {/* Empty State */}
         {!loading && recipes.length === 0 && (
           <>
             {getCurrentSearchTerm() ? (
               <div className="mt-10 sm:mt-16 text-center">
                 <p className="text-gray-500 text-base sm:text-lg">
-                  No recipes found {searchType === "ingredient" && `with "${getCurrentSearchTerm()}"`}.
+                  No recipes found{" "}
+                  {searchType === "ingredient" &&
+                    `with "${getCurrentSearchTerm()}"`}
+                  .
                 </p>
               </div>
             ) : (
@@ -174,8 +173,8 @@ export default function SearchPage() {
                   {searchType === "name" ? "🍽️" : "🥬"}
                 </div>
                 <p className="text-gray-500 text-base sm:text-lg">
-                  {searchType === "name" 
-                    ? "Start typing to search recipes by name" 
+                  {searchType === "name"
+                    ? "Start typing to search recipes by name"
                     : "Start typing to find recipes with specific ingredients"}
                 </p>
               </div>
@@ -183,7 +182,6 @@ export default function SearchPage() {
           </>
         )}
 
-        {/* Loading Skeletons */}
         {loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8">
             {Array.from({ length: 6 }).map((_, index) => (
@@ -206,15 +204,14 @@ export default function SearchPage() {
           </div>
         )}
 
-        {/* Results */}
         {!loading && recipes.length > 0 && (
           <>
-            {/* Search Result Summary */}
             <div className="mt-6 mb-2 text-sm text-gray-600">
-              Found {recipes.length} recipe{recipes.length !== 1 ? "s" : ""} 
-              {searchType === "ingredient" && ` containing "${getCurrentSearchTerm()}"`}
+              Found {recipes.length} recipe{recipes.length !== 1 ? "s" : ""}
+              {searchType === "ingredient" &&
+                ` containing "${getCurrentSearchTerm()}"`}
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-2 sm:mt-4">
               {recipes.map((recipe, index) => (
                 <div
@@ -249,14 +246,12 @@ export default function SearchPage() {
                       {recipe.cuisine}
                     </p>
 
-                    {/* Highlight searched ingredient */}
                     {searchType === "ingredient" && selectedIngredient && (
                       <div className="text-xs text-primary mt-1">
                         Contains: {selectedIngredient}
                       </div>
                     )}
 
-                    {/* Expandable Ingredients */}
                     <div
                       className={`overflow-hidden transition-all duration-300 ${
                         expandedRecipe === index
@@ -272,16 +267,18 @@ export default function SearchPage() {
                             <span
                               key={ingredientIndex}
                               className={`badge badge-outline badge-lg ${
-                                searchType === "ingredient" && 
-                                selectedIngredient && 
-                                ingredient.toLowerCase().includes(selectedIngredient.toLowerCase())
+                                searchType === "ingredient" &&
+                                selectedIngredient &&
+                                ingredient
+                                  .toLowerCase()
+                                  .includes(selectedIngredient.toLowerCase())
                                   ? "badge-primary bg-primary/10"
                                   : ""
                               }`}
                             >
                               {ingredient}
                             </span>
-                          )
+                          ),
                         )}
                       </div>
                     </div>
