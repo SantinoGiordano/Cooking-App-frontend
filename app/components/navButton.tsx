@@ -14,34 +14,33 @@ export default function Page() {
         <Compass size={24} />
       </div>
 
-      {/* Main Action */}
       <button className="fab-main-action btn btn-circle btn-lg">
         <Compass size={24} />
       </button>
 
-      <div className="tooltip" data-tip="Home Page">
+      {/* <div className="tooltip" data-tip="Home Page"> */}
         <Link href={"/"} className="btn btn-lg btn-circle">
           <House size={22} />
         </Link>
-      </div>
+      {/* </div> */}
 
-      <div className="tooltip" data-tip="Serach Recipes">
+      {/* <div className="tooltip" data-tip="Serach Recipes"> */}
         <Link href={"/search"} className="btn btn-lg btn-circle">
           <Search size={22} />
         </Link>
-      </div>
+      {/* </div> */}
 
-      <div className="tooltip" data-tip="My Recipes">
+      {/* <div className="tooltip" data-tip="My Recipes"> */}
         <Link href={"/recipes"} className="btn btn-lg btn-circle">
           <Utensils size={22} />
         </Link>
-      </div>
+      {/* </div> */}
 
-      <div className="tooltip" data-tip="Create Recipe">
+      {/* <div className="tooltip" data-tip="Create Recipe"> */}
         <Link href="/addRecipes" className="btn btn-lg btn-circle btn-primary">
           <Plus size={22} />
         </Link>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
