@@ -6,8 +6,8 @@ import { useState } from "react";
 export default function AddRecipePage() {
   const [name, setName] = useState("");
   const [cuisine, setCuisine] = useState("");
-  const [prepTime, setPrepTime] = useState(0);
-  const [difficulty, setDifficulty] = useState(1);
+  const [prepTime, setPrepTime] = useState<number | undefined>(undefined);
+  const [difficulty, setDifficulty] = useState<number | "">("");
 
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [instructions, setInstructions] = useState<string[]>([]);
@@ -62,7 +62,6 @@ export default function AddRecipePage() {
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-6">
       <div className="max-w-3xl mx-auto space-y-6">
-
         <h1 className="text-3xl font-bold">Add Recipe</h1>
 
         {/* BASIC FIELDS */}
@@ -72,27 +71,35 @@ export default function AddRecipePage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
+        <h2 className="font-semibold mb-2">Cuisine Type</h2>
         <input
           className="input input-bordered w-full"
           placeholder="Cuisine"
           value={cuisine}
           onChange={(e) => setCuisine(e.target.value)}
         />
-
+        <h2 className="font-semibold mb-2">Time</h2>
         <input
           type="number"
           className="input input-bordered w-full"
           placeholder="Prep time (mins)"
-          value={prepTime}
-          onChange={(e) => setPrepTime(Number(e.target.value))}
+          value={prepTime ?? ""}
+          onChange={(e) =>
+            setPrepTime(
+              e.target.value === "" ? undefined : Number(e.target.value),
+            )
+          }
         />
-
+        <h2 className="font-semibold mb-2">Difficulty</h2>
         <select
           className="select select-bordered w-full"
           value={difficulty}
           onChange={(e) => setDifficulty(Number(e.target.value))}
         >
+          <option value="" disabled>
+            Select difficulty
+          </option>
+
           <option value={1}>1 - Easy</option>
           <option value={2}>2</option>
           <option value={3}>3 - Medium</option>
@@ -163,7 +170,7 @@ export default function AddRecipePage() {
         </div>
 
         {/* SUBMIT */}
-        <button onClick={handleSubmit} className="btn btn-success w-full">
+        <button onClick={handleSubmit} className="btn btn-primary  w-full">
           Create Recipe
         </button>
       </div>
